@@ -1,0 +1,116 @@
+<template>
+    <div>
+        <v-app>
+            <v-container fluid ma-0 pa-0>
+                <v-layout row>
+                <v-flex xs10>
+                    <v-card v-if="show_1">
+                        <v-card-title>Pros:</v-card-title>
+                            <!-- {{module1_pros}} -->
+                            <ul>
+                            <li v-for="(key,value) in module1_pros">
+                                {{ value }}
+                            </li>
+                            </ul>
+
+                        <v-card-title>Cons:</v-card-title>
+                        <ul>
+                        <li v-for="(key,value) in module1_cons">
+                            {{ value }}
+                        </li>
+                        </ul>
+
+                    </v-card>
+                </v-flex>
+                <v-flex xs10>
+                    <v-card v-if="show_1">
+                        <v-card-title>Pros:</v-card-title>
+                        <!-- {{module2_pros}} -->
+                        <ul>
+                        <li v-for="(key,value) in module2_pros">
+                            {{ value }}
+                        </li>
+                        </ul>
+
+                        <v-card-title>Cons:</v-card-title>
+                        <ul>
+                        <li v-for="(key,value) in module2_cons">
+                            {{ value }}
+                        </li>
+                        </ul>
+                    </v-card>
+                </v-flex>
+                </v-layout>
+            </v-container>
+        </v-app>
+
+    </div>
+</template>
+
+<script>
+
+export default{
+    name: "ModuleComparator",
+    props:['show_1','module1_properties','module2_properties','module1_pros','module2_pros','module1_cons', 'module2_cons'],
+    data(){
+        return{
+            // module1: null,
+            // module2: null,
+            // module1_pros: {},
+            // module2_pros: {},
+
+        }
+    },
+    methods: {
+        compare_Mod(){
+            // var stats = ['std','SU','webcast','rating']
+            var stats = ['std','SU','webcast','rating']
+            var stats = ['std','SU','webcast']
+            for (var i=0;i<stats.length;i++){
+                var key = [stats[i]];
+                var val_1 = module1_properties[key];
+                var val_2 = module2_properties[key];
+                if(val_1 > val_2){
+                    module1_pros[key]=val_1;
+                }else{
+                    module1_pros[key]=val_2;
+                }
+            }
+            var dict = module1_properties["feedback_pos"];
+            var labels = Object.key(dict);
+            for(var j = 0; j<labels.length; j++){
+                var key_fp = labels[j];
+                if(dict[key_fp]>5){
+                    module1_pros[key_fp]=true;
+                }
+            }
+            dict = module1_properties["feedback_neg"];
+            labels = Object.key(dict);
+            for(j = 0; j<labels.length; j++){
+                key_fp = labels[j];
+                if(dict[key_fp]>5){
+                    module1_cons[key_fp]=true;
+                }
+            }
+            dict = module2_properties["feedback_pos"];
+            labels = Object.key(dict);
+            for(j = 0; j<labels.length; j++){
+                key_fp = labels[j];
+                if(dict[key_fp]>5){
+                    module2_pros[key_fp]=true;
+                }
+            }
+            dict = module2_properties["feedback_neg"];
+            labels = Object.key(dict);
+            for(j = 0; j<labels.length; j++){
+                key_fp = labels[j];
+                if(dict[key_fp]>5){
+                    module2_cons[key_fp]=true;
+                }
+            }
+        }
+
+    }
+}
+
+</script>
