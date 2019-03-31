@@ -1,16 +1,34 @@
 <template>
   <div id="show-modules">
-    <h1>NUS Modules</h1>
+    <h1>Search NUS Modules</h1>
     <input type= "text" v-model="search" placeholder="search modules"/>
     <div v-for="module in filteredModules" :key="module.id" class="single-module">
       <!--  <router-link :to="'/module/'+module['.key']"> <h2>{{ module[".key"] }} </h2> </router-link> -->
       <router-link :to="'/module/'+module.ModuleCode"> <h2>{{ module.ModuleCode }} </h2> </router-link>
-      <h2>{{module.ModuleTitle}}</h2>
-      <article>
-        <p>Department: {{module.Department}}</p>
-        <p>Module Credit: {{module.ModuleCredit}}</p>
-        <p>Webcast: {{module.Webcast}}</p>
-        <p>SU: {{module.SU}}</p>
+        <h2>{{module.ModuleTitle}}</h2>
+        <article>
+        <table>
+            <tr>
+              <td class="p-left">
+                Department: {{module.Department}}</td>
+                <td class="p-right">Semester {{module['History']['0']['Semester']}}</td>
+            </tr>
+            <tr>
+              <td class="p-left">
+                Exam Date: {{module['History']['0']['ExamDate']}}</td>
+              <td class="p-right">Module Credit: {{module.ModuleCredit}}</td>
+            </tr>
+            <tr> 
+              <td class="p-left">Workload: {{module.Workload}}</td>
+              <td class="p-right">SU: {{module.SU}}</td>
+            </tr>
+            <tr> 
+              <td class="p-left">{{module.Webcast}} Available</td>
+            </tr>
+        </table>
+        <p>{{module.ModuleDescription}}</p>
+        <p>Preclusion: {{module.Preclusion}}</p>
+        <p>Prerequisite: {{module.Prerequisite}}</p>
       </article>
     </div>
   </div>
@@ -25,7 +43,7 @@ export default {
   name: 'searchModules',
   components: {
     HelloWorld
-  },
+  }, 
   firebase: {
     // modules: seRef
     modules: modsInfo
@@ -66,5 +84,34 @@ export default {
   margin: 20px 0;
   box-sizing: border-box;
   background: #eee;
+}
+table {
+    width: 100%;
+}
+td {
+    vertical-align: top;
+}
+.p-left {
+    text-align: left;
+}
+.p-right {
+    text-align:right;
+}
+.copy {
+    visibility: hidden;
+}
+.copy, .p-right {
+    white-space: nowrap;
+}
+input[type=text] {
+  width: 100%;
+  box-sizing: border-box;
+  border: 2px solid #ccc;
+  border-radius: 4px;
+  font-size: 16px;
+  background-color: white;
+  background-position: 10px 10px; 
+  background-repeat: no-repeat;
+  padding: 12px 20px 12px 40px;
 }
 </style>

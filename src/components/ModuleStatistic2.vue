@@ -1,8 +1,8 @@
 <template>
-  <div id = "ModuleStatistic2">
+  <div id = "ModuleStatistic2" v-if="show_2">
     
     <!-- <v-btn v-on:click="show_final_marks">Display Statistic</v-btn> -->
-    
+    <strong>Finals Marks Distribution</strong>
     <line-chart
       v-if="show_2"
       xtitle="Final Marks"
@@ -12,8 +12,11 @@
     >
     </line-chart>
     <div v-if="show_2">
+    <br><br><strong>Here is an illustration of the positive feedback from students</strong><br><br>
     <radar-chart :chartData="this.radar_data_pos_2"></radar-chart>
+    <br><br><strong>Here is an illustration of the negative feedback from students</strong><br><br>
     <radar-chart :chartData="this.radar_data_neg_2"></radar-chart>
+    <br><br><strong>Faculty composition of students who have taken this module</strong><br><br>
     <pie-chart :data="pie_data_2"></pie-chart>
     </div>
     <br />
@@ -21,6 +24,10 @@
     <div v-if="std">Mean is {{ mean }}</div>
     <div v-if="std">Median is {{ median }}</div> -->
     <br />
+    <strong>Average grade of students who have taken this module across faculties</strong><br><br>
+    <bar-chart :data="bar_data_2"></bar-chart>
+    <br><br>
+
   </div>
 </template>
 <style scoped>
@@ -50,7 +57,7 @@ import RadarChart from './charts/radarchart.js'
 
 export default {
   name: "ModuleStatistic2",
-  props:['module2','module2_properties','radar_data_pos_2','radar_data_neg_2','histData_2','show_2','pie_data_2'],
+  props:['module2','module2_properties','radar_data_pos_2','radar_data_neg_2','histData_2','show_2','pie_data_2','bar_data_2'],
   components:{
     RadarChart
   },

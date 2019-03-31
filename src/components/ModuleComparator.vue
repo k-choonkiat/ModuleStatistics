@@ -5,39 +5,67 @@
                 <v-layout row>
                 <v-flex xs10>
                     <v-card v-if="show_1">
-                        <v-card-title>Pros:</v-card-title>
+                        <v-divider></v-divider>
+                            <v-toolbar extended flat height="25px" dark color = 'green'>
+                                <v-toolbar-title class="white--text">><b><h3>Pros:</h3></b></v-toolbar-title>
+                            </v-toolbar>
                             <!-- {{module1_pros}} -->
                             <ul>
-                            <li v-for="(key,value) in module1_pros">
-                                {{ value }}
+                            <li align=left v-for="(key,value) in module1_pros" :key="value">
+                                <b>{{value}}</b>
+                                <p v-if="value=='std'">Interpretation: The standard deviation of this module is smaller, suggesting that the bellcurve of the module may be steeper </p>
+                                <p v-if="value=='SU'">Interpretation: This module can be SU-ed, hence it is a safe option if you intend to use your SUs this semester </p>
+                                <p v-if="value=='webcast'">Interpretation: This module can be webcasted, which is great if you prefer to sleep in or stay home </p>
+                      
                             </li>
+                            
                             </ul>
-
-                        <v-card-title>Cons:</v-card-title>
+                            <br><br>
+                            <!-- <v-list-tile
+                                v-for="(key,value) in module1_pros" :key="value"
+                            >
+                                    <v-list-tile-content>
+                                        <v-list-tile-title v-text="value"></v-list-tile-title>
+                                    </v-list-tile-content>
+                                </v-list-tile> -->
+                        <v-toolbar extended flat height="25px" dark color = 'red'>
+                            <v-toolbar-title class="white--text">><b><h3>Cons:</h3></b></v-toolbar-title>
+                        </v-toolbar>
                         <ul>
-                        <li v-for="(key,value) in module1_cons">
-                            {{ value }}
+                        <li align=left v-for="(key,value) in module1_cons" :key="value">
+                            <b>{{ value }}</b>
+                            <p v-if="value=='std'">Interpretation: The standard deviation of this module is larger, suggesting that the bellcurve of the module may be steeper </p>
+                            <p v-if="value=='SU'">Interpretation: This module canot be SU-ed, hence there is no safety net if you flunk this mod </p>
+
                         </li>
-                        </ul>
+                        </ul><br><br>
 
                     </v-card>
                 </v-flex>
                 <v-flex xs10>
                     <v-card v-if="show_1">
-                        <v-card-title>Pros:</v-card-title>
+                        <v-toolbar extended flat height="25px" dark color = 'green'>
+                            <v-toolbar-title class="white--text">><b><h3>Pros:</h3></b></v-toolbar-title>
+                        </v-toolbar>
                         <!-- {{module2_pros}} -->
                         <ul>
-                        <li v-for="(key,value) in module2_pros">
-                            {{ value }}
-                        </li>
-                        </ul>
+                        <li align=left v-for="(key,value) in module2_pros" :key="value">
+                            <b>{{ value }}</b>
+                            <p v-if="value=='std'">Interpretation: The standard deviation of this module is smaller, suggesting that the bellcurve of the module may be steeper </p>
+                            <p v-if="value=='SU'">Interpretation: This module can be SU-ed, hence it is a safe option if you intend to use your SUs this semester </p>
+                            <p v-if="value=='webcast'">Interpretation: This module can be webcasted, which is great if you prefer to sleep in or stay home </p>
 
-                        <v-card-title>Cons:</v-card-title>
-                        <ul>
-                        <li v-for="(key,value) in module2_cons">
-                            {{ value }}
                         </li>
                         </ul>
+                        <br><br>
+                        <v-toolbar extended flat height="25px" dark color = 'red'>
+                            <v-toolbar-title class="white--text">><b><h3>Cons:</h3></b></v-toolbar-title>
+                        </v-toolbar>
+                        <ul>
+                        <li align=left v-for="(key,value) in module2_cons" :key="value">
+                            <b>{{ value }}</b>
+                        </li>
+                        </ul> <br><br>
                     </v-card>
                 </v-flex>
                 </v-layout>

@@ -16,3 +16,4 @@ let app = Firebase.initializeApp(config);
 
 export const db = app.database(); // export for other components to use
 export const modsInfo = db.ref("mods_info/data");
+export const seRef = db.ref("seRef/data");
